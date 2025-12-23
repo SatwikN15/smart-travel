@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Travel & Commute Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Travel & Commute Manager</h1>
+            <p class="subtitle">Professional route planning and commute optimization</p>
+        </header>
+
+        <div class="main-grid">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Add Route Card -->
+                <div class="card">
+                    <h2>Add New Route</h2>
+                    <form id="routeForm">
+                        <div class="form-group">
+                            <label>Route Name</label>
+                            <input type="text" id="routeName" placeholder="e.g., Home to Office" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Origin</label>
+                            <input type="text" id="fromLocation" placeholder="Starting location" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Destination</label>
+                            <input type="text" id="toLocation" placeholder="End location" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Transport Mode</label>
+                            <div class="transport-mode">
+                                <div>
+                                    <button type="button" class="mode-btn selected" data-mode="car">🚗</button>
+                                    <div class="mode-label">Car</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="mode-btn" data-mode="bus">🚌</button>
+                                    <div class="mode-label">Bus</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="mode-btn" data-mode="train">🚆</button>
+                                    <div class="mode-label">Train</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="mode-btn" data-mode="bike">🚴</button>
+                                    <div class="mode-label">Bike</div>
+                                </div>
+                                <div>
+                                    <button type="button" class="mode-btn" data-mode="walk">🚶</button>
+                                    <div class="mode-label">Walk</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Distance (km)</label>
+                            <input type="number" id="distance" step="0.1" placeholder="0.0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Estimated Duration (minutes)</label>
+                            <input type="number" id="duration" placeholder="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Cost per Trip (₹)</label>
+                            <input type="number" id="cost" step="0.01" placeholder="0.00" required>
+                        </div>
+
+                        <button type="submit" class="btn">Add Route</button>
+                    </form>
+                </div>
+
+                <!-- Statistics Card -->
+                <div class="card" style="margin-top: 30px;">
+                    <h2>Overview</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalRoutes">0</div>
+                            <div class="stat-label">Total Routes</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalDistance">0</div>
+                            <div class="stat-label">Total Distance (km)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalCost">₹0</div>
+                            <div class="stat-label">Total Cost</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalTime">0h</div>
+                            <div class="stat-label">Total Time</div>
+                        </div>
+                    </div>
+
+                    <div class="carbon-section">
+                        <div style="font-weight: 600; color: #2c3e50; margin-bottom: 10px;">Carbon Footprint</div>
+                        <div class="carbon-value" id="carbonFootprint">0 kg CO₂</div>
+                        <div class="carbon-label">Estimated monthly emissions</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div>
+                <div class="card">
+                    <h2>Route Management</h2>
+                    
+                    <div class="tabs">
+                        <button class="tab active" data-tab="all">All Routes</button>
+                        <button class="tab" data-tab="favorites">Favorites</button>
+                        <button class="tab" data-tab="schedule">Schedules</button>
+                    </div>
+
+                    <div class="tab-content active" id="all">
+                        <div id="routesList"></div>
+                    </div>
+
+                    <div class="tab-content" id="favorites">
+                        <div id="favoritesList"></div>
+                    </div>
+
+                    <div class="tab-content" id="schedule">
+                        <div class="schedule-form-grid">
+                            <div>
+                                <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 1.1em; font-weight: 600;">Create Schedule</h3>
+                                <form id="scheduleForm">
+                                    <div class="schedule-form-row">
+                                        <select id="scheduleRoute" required>
+                                            <option value="">Select Route</option>
+                                        </select>
+                                        <input type="time" id="scheduleTime" required>
+                                        <select id="scheduleDays" required>
+                                            <option value="weekdays">Weekdays</option>
+                                            <option value="daily">Daily</option>
+                                            <option value="weekends">Weekends</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn" style="margin-top: 15px;">Add to Schedule</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="scheduleList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
